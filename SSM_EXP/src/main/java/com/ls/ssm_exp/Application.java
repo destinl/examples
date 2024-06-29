@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication // 标记这是一个Spring Boot应用
-
 public class Application {
 
     public static void main(String[] args) {

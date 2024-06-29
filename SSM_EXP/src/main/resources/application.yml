@@ -2,9 +2,10 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKnV3aZcbkUP29lo8XlZBD8QYtO7yyisrRTZ2wsc7EVJ43CwzCIBuOjvrfOpnLFNUqWh5/LYytBHLGPMUY42TG8CAwEAAQ==
     url: jdbc:mysql://localhost:3306/testdb?useSSL=false&serverTimezone=UTC
     username: root
-    password: Mysql112223
+    password: KzW0KemfdUKwQ1+ylc+8uaC+VuLHMa3u7BkZDiDFBa37tYkHrl3DbLQld0LQVT7bcR3IzoFTqqHtu132T0nXOw==
     initial-size: 5
     min-idle: 5
     max-active: 20
@@ -17,3 +18,36 @@ spring:
     test-on-return: false
     pool-prepared-statements: true
     max-pool-prepared-statement-per-connection-size: 20
+  druid:
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=false&serverTimezone=UTC
+#      jdbc:mysql://localhost:3306/testdb?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: KzW0KemfdUKwQ1+ylc+8uaC+VuLHMa3u7BkZDiDFBa37tYkHrl3DbLQld0LQVT7bcR3IzoFTqqHtu132T0nXOw==
+    initial-size: 10
+    max-active: 100
+    min-idle: 10
+    max-wait: 60000
+    pool-prepared-statements: true
+    max-pool-prepared-statement-per-connection-size: 20
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    #validation-query: SELECT 1 FROM DUAL
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    stat-view-servlet:
+      enabled: true
+      url-pattern: /druid/*
+      #login-username: admin
+      #login-password: admin
+    filter:
+      stat:
+        log-slow-sql: true
+        slow-sql-millis: 1000
+        merge-sql: false
+      wall:
+        config:
+          multi-statement-allow: true
+      config:
+        enabled: true
+    connection-properties: config.decrypt=true;config.decrypt.key=${spring.datasource.publicKey}
