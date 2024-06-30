@@ -1,0 +1,35 @@
+# 忽略所有的 .class 文件
+*.class
+
+# 忽略所有的 .java 文件，除了 com/example 下的
+!com/example/*.java
+
+# 忽略 target 目录下的所有内容
+target/
+
+# 忽略.idea 目录，这是 IntelliJ IDEA 的配置目录
+.idea/
+
+.out/
+
+# 忽略 .iml 文件，这是 IntelliJ IDEA 的模块文件
+*.iml
+
+# 忽略日志文件
+*.log
+
+# 忽略编译器生成的文件
+*.bak
+*.tmp
+
+# 忽略 Eclipse 的配置文件
+.*_project
+.*ws
+*.launch
+
+# 忽略项目特定的配置文件
+config/settings.xml
+
+# 忽略 OS 生成的文件 #
+.DS_Store
+Thumbs.db
