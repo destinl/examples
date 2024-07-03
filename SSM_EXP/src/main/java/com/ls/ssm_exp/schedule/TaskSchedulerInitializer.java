@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.support.CronTrigger;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2024/6/3019:37
  */
 @Component
+@Order(2)
 public class TaskSchedulerInitializer implements ApplicationRunner {
 
     @Autowired

@@ -4,8 +4,9 @@ package com.ls.ssm_exp.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-        import org.springframework.data.redis.core.RedisTemplate;
-        import org.springframework.stereotype.Component;
+import org.springframework.core.annotation.Order;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 //import org.jeecg.modules.system.service.impl.SysDictServiceImpl;
@@ -18,6 +19,7 @@ import java.time.Duration;
  */
 
 @Component
+@Order(1)
 public class CacheDataWarmup implements ApplicationRunner {
 
     private final RedisTemplate redisTemplate;

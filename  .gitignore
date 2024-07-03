@@ -35,3 +35,4 @@ config/settings.xml
 Thumbs.db
 /SSM_EXP/target/
 /out/
+/SSM_EXP/target/classes/com/ls/ssm_exp/utils/LoadOuterResource.class
