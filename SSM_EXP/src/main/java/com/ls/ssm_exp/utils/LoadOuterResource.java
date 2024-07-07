@@ -29,14 +29,14 @@ public class LoadOuterResource implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        YamlPropertySourceLoader sourceLoader = new YamlPropertySourceLoader() ;
-        List<PropertySource<?>> list;
-        try {
-            //预先加载外部资源文件
-            list = sourceLoader.load("pack", new ClassPathResource("com/pack/binder/properties/pack.yml"));
-            list.forEach(propertySource -> environment.getPropertySources().addLast(propertySource)) ;
-        } catch (IOException e) {
-            e.printStackTrace() ;
-        }
+//        YamlPropertySourceLoader sourceLoader = new YamlPropertySourceLoader() ;
+//        List<PropertySource<?>> list;
+//        try {
+//            //预先加载外部资源文件
+//            list = sourceLoader.load("pack", new ClassPathResource("com/pack/binder/properties/pack.yml"));
+//            list.forEach(propertySource -> environment.getPropertySources().addLast(propertySource)) ;
+//        } catch (IOException e) {
+//            e.printStackTrace() ;
+//        }
     }
 }

@@ -5,11 +5,15 @@ import com.ls.ssm_exp.domain.resp.UserResponse;
 import com.ls.ssm_exp.service.MyService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 /**
  * @Description:
@@ -39,8 +43,9 @@ public class MyController {
     }
 
     @GetMapping("/user/{userId}")
-    public void getUserById(@PathVariable String userId) {
+    public String getUserById(@PathVariable String userId) {
         // 业务逻辑
+        return "1";
     }
 
 //    @PostMapping("/user/register")
@@ -51,32 +56,32 @@ public class MyController {
 //        }
 //    }
 
-    @PostMapping("/user/register")
-    public void getGradeById(@Validated @RequestBody User user) {
-        // 代码逻辑
-//        关于调用业务方法，这里的业务方法是写一个大而全的方法？还是需要按业务归类？
+//    @PostMapping("/user/register")
+//    public void getGradeById(@Validated @RequestBody User user) {
+//        // 代码逻辑
+////        关于调用业务方法，这里的业务方法是写一个大而全的方法？还是需要按业务归类？
+////
+////        遵守一个原则：有强关联性的逻辑放在一个service方法内，没有强关联性的单令拎出来。
+//        //业务归类写法如下：
+////        userService.register(user);
+////        coupon.sendCoupon(userId);
 //
-//        遵守一个原则：有强关联性的逻辑放在一个service方法内，没有强关联性的单令拎出来。
-        //业务归类写法如下：
-//        userService.register(user);
-//        coupon.sendCoupon(userId);
-
-
-        // 调用注册的业务方法
-//        String userId = userService.regist(user);
-//          组织返回数据
-//        return new UserResponse(userId, user.getNickname);
-
-//        try {
-//            String userId = userService.regist(user);
-//        } catch (Exception e) {
-//            throw new CustomException();
-//        }
-//        return new UserResponse(userId, user.getNickname);
-
-
-
-    }
+//
+//        // 调用注册的业务方法
+////        String userId = userService.regist(user);
+////          组织返回数据
+////        return new UserResponse(userId, user.getNickname);
+//
+////        try {
+////            String userId = userService.regist(user);
+////        } catch (Exception e) {
+////            throw new CustomException();
+////        }
+////        return new UserResponse(userId, user.getNickname);
+//
+//
+//
+//    }
 
     @RequestMapping("/test")
     public void example(HttpServletRequest request, HttpServletResponse response) {
@@ -89,22 +94,36 @@ public class MyController {
         return "userDetail";
     }
 
-    @RequestMapping("/search")
+    @GetMapping("/search")
     public String search(@RequestParam("query") String query) {
         // 使用 query 进行搜索
         return "searchResults";
     }
 
+//    , consumes = MediaType.APPLICATION_JSON_VALUE
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestBody User user) {
+//    @ResponseBody // 1. 添加 @ResponseBody 注解
+    public String create( @RequestBody @Valid User user) {
         // 处理 user 对象
+        if(user.getNickname() == null){
+            return "error";
+        }
         return "user";
+//        response.setContentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8");
+
+        // 创建 ResponseEntity 对象并设置状态码
+//        return new ResponseEntity<>(user, HttpStatus.CREATED); // 假设创建成功，使用 HttpStatus.CREATED
     }
 
     @RequestMapping("/register")
-    public String register(@ModelAttribute User user) {
+    public ResponseEntity<User> register(@ModelAttribute User user, HttpServletResponse response) {
         // 处理 user 对象
-        return "user";
+
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8");
+
+        // 创建 ResponseEntity 对象并设置状态码
+        return new ResponseEntity<>(user, HttpStatus.CREATED); // 假设创建成功，使用 HttpStatus.CREATED
+//        return "user";
     }
 
     @RequestMapping("/profile")
@@ -113,8 +132,8 @@ public class MyController {
         return "profile";
     }
 
-    @RequestMapping("/headers")
-    public String headers(@RequestHeader("User-Agent") String userAgent) {
+    @GetMapping("/headers")
+    public String headers(@RequestHeader("token") String userAgent, String id) {
         // 使用 userAgent 进行处理
         return "headerInfo";
     }
@@ -132,5 +151,12 @@ public class MyController {
 //        // 使用自定义对象进行处理
 //        return "";
 //    }
+
+    @PostMapping("/user/register")
+    public String getGradeById(@Validated @RequestBody User user) {
+        // 调用注册的业务方法
+//        String userId = userService.register(user);
+        return "1";
+    }
 
 }

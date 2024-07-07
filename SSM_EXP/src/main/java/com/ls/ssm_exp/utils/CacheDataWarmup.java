@@ -31,22 +31,22 @@ public class CacheDataWarmup implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // 设置键名
-        String redisKey = "test:count";
-        try{
-            // 设置键值
-            redisTemplate.opsForValue().set(redisKey, 1, Duration.ofMinutes(1));
-            // 获取该键
-            System.out.println(redisTemplate.opsForValue().get(redisKey));
-//            // 键值加3
-            System.out.println(redisTemplate.opsForValue().increment(redisKey,3));
-//            // 键值减3
-            System.out.println(redisTemplate.opsForValue().decrement(redisKey,3));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // 处理异常或记录日志
-        }
+//        // 设置键名
+//        String redisKey = "test:count";
+//        try{
+//            // 设置键值
+//            redisTemplate.opsForValue().set(redisKey, 1, Duration.ofMinutes(1));
+//            // 获取该键
+//            System.out.println(redisTemplate.opsForValue().get(redisKey));
+////            // 键值加3
+//            System.out.println(redisTemplate.opsForValue().increment(redisKey,3));
+////            // 键值减3
+//            System.out.println(redisTemplate.opsForValue().decrement(redisKey,3));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            // 处理异常或记录日志
+//        }
 
     }
 }
