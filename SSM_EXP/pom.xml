@@ -21,6 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mysql-connector.version>8.0.29</mysql-connector.version>
         <lombok.version>1.18.30</lombok.version>
+        <oss.version>0.0.1-SNAPSHOT</oss.version>
     </properties>
 
     <dependencies>
@@ -98,6 +99,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ls</groupId>
+            <artifactId>oss-spring-boot-starter</artifactId>
+            <version>${oss.version}</version>
         </dependency>
     </dependencies>
 </project>
