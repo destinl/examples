@@ -38,6 +38,8 @@ public class MyController {
     private MyService myService; // 假设您的服务类名为 MyService
 
     @GetMapping("test")
+    @CrossOrigin(origins = "http://allowed-origin.com", methods = {RequestMethod.GET, RequestMethod.POST},
+            allowedHeaders = {"header1", "header2"})
     public void someTransactionalOperation( String name){
         myService.someTransactionalOperation("Transactional");
     }

@@ -4,6 +4,7 @@ import com.ls.ssm_exp.Interceptor.MyInterceptor;
 import com.ls.ssm_exp.Interceptor.RateLimitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -32,5 +33,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new MyInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login", "/register"); // 可以排除某些路径不被拦截
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("http://allowed-origin.com")
+                .allowedMethods("GET", "POST")
+                .allowedHeaders("header1", "header2")
+                .exposedHeaders("header3")
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
