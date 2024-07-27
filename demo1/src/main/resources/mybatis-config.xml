@@ -1,0 +1,13 @@
+<!-- mybatis-config.xml -->
+<configuration>
+    <settings>
+        <!-- 启用二级缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!-- 配置二级缓存的类型，这里使用 MyBatis 内置的 PerpetualCache -->
+    <cache type="org.apache.ibatis.cache.impl.PerpetualCache">
+        <!-- 二级缓存的大小限制 -->
+        <property name="size" value="1024"/>
+    </cache>
+</configuration>
