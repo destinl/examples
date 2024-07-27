@@ -9,80 +9,43 @@ import java.util.List;
  * @Date: 2024/7/2522:13
  */
 public class Solution {
-    public int minimumOperations(String num) {
-//        List<Integer> l0 = new ArrayList<>(), l2 = new ArrayList<>(), l5 = new ArrayList<>(), l7 = new ArrayList<>();
-//        int len = num.length();
-//        for(int i = len-1; i >= 0; i--){
-//            if(num.charAt(i) == '0'){
-//                l0.add(i);
-//            }else if(num.charAt(i) == '2'){
-//                l2.add(i);
-//            }else if(num.charAt(i) == '5'){
-//                l5.add(i);
-//            }else if(num.charAt(i) == '7'){
-//                l7.add(i);
-//            }
-//        }
-//        int n00 = len, n25 = len, n50 = len, n75 = len, n0 = len;
-//        if(l0.size() >= 1){
-//            n0 = len-1;
-//        }
-//        if(l0.size() >= 2)
-//            n00 =  len-1 -l0.get(1)-1;
-//        if(l5.size() >= 1 && l2.size()>=1){
-//            int index2 = l2.get(0), i = 0;
-//            while(index2 > l5.get(0) && i < l2.size()-1){
-//                index2 = l2.get(++i);
-//            }
-//            if(index2 < l5.get(0)) n25 =  len-index2-2;
-//            // System.out.println(n25);
-//        }
-//        if(l0.size() >= 1 && l5.size()>=1){
-//            int index2 = l5.get(0), i = 0;
-//            while(index2 > l0.get(0) && i < l5.size()-1){
-//                index2 = l5.get(++i);
-//            }
-//            if(index2 < l0.get(0)) n50 =  len-index2-2;
-//            // System.out.println(n50);
-//
-//        }
-//        if(l5.size() >= 1 && l7.size()>=1){
-//            int index2 = l7.get(0), i = 0;
-//            while(index2 > l5.get(0) && i < l7.size()-1){
-//                index2 = l7.get(++i);
-//            }
-//            if(index2 < l5.get(0)) n75 =  len-index2-2;
-//            // System.out.println(n75);
-//
-//        }
-//
-//        return Math.min(n0, Math.min(Math.min(n50, n75), Math.min(n00, n25)));
-        int n = num.length();
-        boolean find0 = false, find5 = false;
-        for(int i = n-1; i >= 0; i--){
-            if(num.charAt(i) == '0' || num.charAt(i) == '5'){
-                if(find0){
-                    return n-i-2;
+    public int compress(char[] chars) {
+        int n = chars.length;
+        int write = 0, left = 0;
+        for(int read = 0; read < n; read++){
+            if(read == n-1 || chars[read] != chars[read+1]){
+                chars[write++] = chars[read];
+                int num = read-left+1;
+                if(num > 1){
+                    int anchor = write;
+                    while(num > 0){
+                        chars[write++] = (char)(num%10 + '0');
+                        num /= 10;
+                    }
+                    reverse(chars, anchor, write-1);
                 }
-                if(num.charAt(i) == '0'){
-                    find0 = true;
-                }else{
-                    find5 = true;
-                }
-            }else if(num.charAt(i) == '2' || num.charAt(i) == '7'){
-                if (find5) {
-                    return n - i - 2;
-                }
+                left = read+1;
             }
         }
-        if(find0){
-            return n-1;
-        }
-        return n;
+        return write;
+
     }
 
-    public static void main(String[] args){
+    public void reverse(char[] chars, int left, int right){
+        while(left < right){
+            char temp = chars[left];
+            chars[left] = chars[right];
+            chars[right] = temp;
+            left++;
+            right--;
+        }
+    }
+    public static void main(String[] args) {
         Solution s = new Solution();
-        System.out.println(s.minimumOperations("2908305"));
+        System.out.println(s.compress(new char[]{'w','w','w','w','w','b','b','g','g','g','g','a','a','a','i','i','i','i','y','y','p','v','v','v','u','u','u','y','y','y','y','y','y','y','y','y','s','q','q','q','q','q','q','q','q','q','q','n','n','n'}));
+//        'a', 'a', 'b', 'b', 'c', 'c', 'c'
+//        'a','b','b','b','b','b','b','b','b','b','b','b','b'
+//        'a','b','c'
+//        'o','o','o','o','o','o','o','o','o','o'
     }
 }
