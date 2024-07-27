@@ -1,14 +1,17 @@
 package com.ls.ssm_exp.controller;
 
+import com.ls.ssm_exp.domain.dto.UserDTO;
 import com.ls.ssm_exp.domain.entity.User;
 import com.ls.ssm_exp.domain.resp.UserResponse;
 import com.ls.ssm_exp.service.MyService;
+import com.ls.ssm_exp.utils.UserPropertyEditor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +39,18 @@ public class MyController {
 
     @Autowired
     private MyService myService; // 假设您的服务类名为 MyService
+
+    //web环境下,
+    //1通过@InitBinder注解来注册自定义的PropertyEditor
+    //也可以将其注册到全局范围，将@InitBinder标注的方法，放到@ControllerAdvice注解的类中
+    @GetMapping("")
+    public UserDTO index(UserDTO dto) {
+        return dto ;
+    }
+    @InitBinder
+    public void init(WebDataBinder binder) {
+        binder.registerCustomEditor(User.class, new UserPropertyEditor()) ;
+    }
 
     @GetMapping("test")
     @CrossOrigin(origins = "http://allowed-origin.com", methods = {RequestMethod.GET, RequestMethod.POST},
