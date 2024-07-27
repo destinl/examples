@@ -1,4 +1,4 @@
-package main.java.JVM;
+package JVM;
 
 public class GCTest {
 
