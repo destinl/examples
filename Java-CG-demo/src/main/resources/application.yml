@@ -5,3 +5,32 @@
 #  setting:
 #    enableHost: true
 #    groupName: Default Group
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: Mysql112223
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  shardingsphere:
+    datasource:
+      names: ds0
+      ds0:
+#        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: Mysql112223
+    rules:
+      encrypt:
+        tables:
+          t_user:
+            columns:
+              password:
+                cipherColumn: password_encrypted
+                encryptorName: aes_encryptor
+                plainColumn: password_plain
+        encryptors:
+          aes_encryptor:
+            type: aes  # 明确指定 aes 类型
+            props:
+              aes-key-value: '123456abcde'
