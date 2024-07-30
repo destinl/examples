@@ -1,5 +1,7 @@
 package com.ls.javacgdemo.service;
 
+import com.ls.javacgdemo.domain.DataSource;
+import com.ls.javacgdemo.domain.DatabaseType;
 import com.ls.javacgdemo.domain.User;
 import com.ls.javacgdemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @DataSource(DatabaseType.PRIMARY) // 从 从库读 取用户
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
     }
