@@ -7,16 +7,18 @@
 #    groupName: Default Group
 spring:
   datasource:
-    primary:
-      url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
-      username: root
-      password: Mysql112223
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    replica:
-      url: jdbc:mysql://localhost:3306/pai_coding?useUnicode=true&characterEncoding=UTF-8&useSSL=false
-      username: root
-      password: Mysql112223
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    primary: master
+    datasource:
+      master:
+        url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: Mysql112223
+        driver-class-name: com.mysql.cj.jdbc.Driver
+      replica:
+        url: jdbc:mysql://localhost:3306/pai_coding?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: Mysql112223
+        driver-class-name: com.mysql.cj.jdbc.Driver
   shardingsphere:
     datasource:
       names: ds0
