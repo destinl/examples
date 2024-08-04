@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @Description:
@@ -32,5 +33,21 @@ public class UserController {
         Optional<User> user = userService.findById(id);
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @RequestMapping(path = "sell", method = RequestMethod.GET)
+    public void sell(){
+        CountDownLatch countDownLatch = new CountDownLatch(100);
+        for(int i = 0; i < 100; i++){
+            new Thread(()->{
+                try{
+                    countDownLatch.await();
+                    userService.lockPoduct();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+            countDownLatch.countDown();
+        }
     }
 }
