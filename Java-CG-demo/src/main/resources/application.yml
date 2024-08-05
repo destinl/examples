@@ -43,3 +43,8 @@ spring:
             type: aes  # 明确指定 aes 类型
             props:
               aes-key-value: '123456abcde'
+ip:
+  whitelist:
+    addresses:
+      - "192.168.1.1"
+      - "192.168.1.2"
