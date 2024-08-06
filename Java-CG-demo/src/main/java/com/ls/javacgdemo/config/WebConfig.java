@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(ipWhitelistInterceptor)
-                .addPathPatterns("/**"); // 这里可以根据需要指定拦截的路径
+//        registry.addInterceptor(ipWhitelistInterceptor)
+//                .addPathPatterns("/**"); // 这里可以根据需要指定拦截的路径
     }
 }

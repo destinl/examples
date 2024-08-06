@@ -11,12 +11,12 @@ spring:
     dynamic:
       datasource:
         master:
-          url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          jdbc-url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: root
           password: Mysql112223
           driver-class-name: com.mysql.cj.jdbc.Driver
         replica:
-          url: jdbc:mysql://localhost:3306/pai_coding?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          jdbc-url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: root
           password: Mysql112223
           driver-class-name: com.mysql.cj.jdbc.Driver
@@ -48,3 +48,4 @@ ip:
     addresses:
       - "192.168.1.1"
       - "192.168.1.2"
+      - "0:0:0:0:0:0:0:1"

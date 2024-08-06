@@ -1,5 +1,6 @@
 package com.ls.javacgdemo.controller;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.ls.javacgdemo.domain.User;
 import com.ls.javacgdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

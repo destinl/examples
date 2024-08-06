@@ -2,6 +2,8 @@ package com.ls.javacgdemo.service;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.ls.javacgdemo.domain.*;
+//import com.ls.javacgdemo.mapper.UserMapper;
+import com.ls.javacgdemo.mapper.UserMapper;
 import com.ls.javacgdemo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserMapper userMapper;
+
     private Lock lock = new ReentrantLock(true);
 
     @Resource
@@ -39,10 +44,11 @@ public class UserService {
 
 
 
-//    @DataSource(DatabaseType.PRIMARY) // 从 从库读 取用户
-//    @DS("master")
+    @DataSource(DatabaseType.REPLICA) // 从 库 读取用户
+//    @DS("replica")
     public Optional<User> findById(Integer id) {
-        return userRepository.findById(id);
+        return userMapper.findById(id);
+//        return userRepository.findById(id);
     }
 
     //正确 加锁 和 使用@Transactional 的方法(或者@Transactional(isolation = Isolation.SERIALIZABLE)串行化，但太耗性能)
