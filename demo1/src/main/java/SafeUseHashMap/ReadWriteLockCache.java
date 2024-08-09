@@ -1,4 +1,4 @@
-package main.java.SafeUseHashMap;
+package SafeUseHashMap;
 
 import java.util.HashMap;
 import java.util.Map;
