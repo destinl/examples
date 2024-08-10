@@ -4,6 +4,9 @@ import com.ls.domain.dto.TestDTO;
 import com.ls.service.TestService;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,5 +52,19 @@ public class TestController {
     @Autowired
     public void setTestService(TestService prettyTestService) {
         this.testService = prettyTestService;
+    }
+
+    @GetMapping("/index")
+    public Object index(Long id, String kw) {
+        // 自定义响应header
+        HttpHeaders headers = new HttpHeaders() ;
+        headers.add("x-version", "1.0.0") ;
+        ResponseEntity<Object> response = new ResponseEntity<Object>(
+                String.format("【id = %d, kw = %s】", id, kw),
+                headers,
+                HttpStatus.ACCEPTED
+//                HttpStatusCode.valueOf(200)
+        );
+        return response ;
     }
 }
