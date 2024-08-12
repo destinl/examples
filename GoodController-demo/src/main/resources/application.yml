@@ -6,6 +6,7 @@ spring:
     name: order-service
   mvc:
     log-request-details: true
+    # 如果没有找到请求地址，抛异常
     throw-exception-if-no-handler-found: true
     static-path-pattern: /static/**
   web:
@@ -20,6 +21,8 @@ spring:
         server-addr: 127.0.0.1:8848
         group: DEFAULT_GROUP
 #        namespace: Public
+#  resources:
+#    add-mappings: false   # 关闭默认的静态资源路径映射
   profiles:
     active: dev
 logging:
