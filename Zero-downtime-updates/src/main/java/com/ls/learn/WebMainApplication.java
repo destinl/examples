@@ -25,6 +25,8 @@ import java.util.Collection;
 @EnableScheduling
 public class WebMainApplication {
     public static void main(String[] args) {
+//        //动态服务名
+//        System.setProperty("myApplicationName", "WS-" + IdUtil.oneId());
         String[] newArgs = args.clone();
         int defaultPort = 8080;
         boolean needChangePort = false;
