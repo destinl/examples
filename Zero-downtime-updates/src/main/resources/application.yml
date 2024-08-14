@@ -2,3 +2,9 @@
 #  application:
 #    #随机名字，做ws集群使用
 #    name: ${myApplicationName}
+management:
+  endpoints:
+    web:
+      base-path: /ac
+      exposure:
+        include: '*'
