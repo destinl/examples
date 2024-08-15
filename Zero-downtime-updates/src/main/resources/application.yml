@@ -8,3 +8,24 @@ management:
       base-path: /ac
       exposure:
         include: '*'
+spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          my-client:
+#            client-id: my-client-id
+#            client-secret: my-client-secret
+#            authorization-grant-type: authorization_code
+#            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
+#            scope: read,write
+#        provider:
+#          my-client:
+#            issuer-uri: http://auth-server:9000
+#            authorization-uri: https://auth-server.com/oauth/authorize
+#            token-uri: https://auth-server.com/oauth/token
+#            user-info-uri: https://auth-server.com/userinfo
+#            user-name-attribute: id
+#      resource server:
+#        jwt:
+#          jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
