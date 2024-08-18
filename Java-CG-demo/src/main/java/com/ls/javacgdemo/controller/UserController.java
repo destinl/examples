@@ -1,12 +1,12 @@
 package com.ls.javacgdemo.controller;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.ls.javacgdemo.domain.User;
 import com.ls.javacgdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 
@@ -34,6 +34,11 @@ public class UserController {
         Optional<User> user = userService.findById(id);
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/tags/{id}")
+    public List<String> getUserTagsById(@PathVariable Integer id) {
+        return userService.findTagsById(id);
     }
 
     @RequestMapping(path = "sell", method = RequestMethod.GET)

@@ -2,10 +2,11 @@ package com.ls.javacgdemo.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.ls.javacgdemo.domain.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.ls.javacgdemo.handler.StringListTypeHandler;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -18,4 +19,11 @@ public interface UserMapper {
     @Select("SELECT id, username, password_plain as passwordPlain  FROM t_user WHERE" +
             " id = #{id}")
     Optional<User> findById(@Param("id") Integer id);
+
+    @Select("SELECT username FROM t_user WHERE id = #{id}")
+    @Results({
+            @Result(column = "username", property = "username", typeHandler = StringListTypeHandler.class, jdbcType =
+                    JdbcType.VARCHAR)
+    })
+    List<String> getTagsById(@Param("id") Integer id);
 }

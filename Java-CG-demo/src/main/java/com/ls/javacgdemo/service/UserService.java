@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -50,6 +51,12 @@ public class UserService {
         return userMapper.findById(id);
 //        return userRepository.findById(id);
     }
+
+    @DataSource(DatabaseType.REPLICA) // 从 库 读取用户
+    public List<String> findTagsById(Integer id) {
+        return userMapper.getTagsById(id);
+    }
+
 
     //正确 加锁 和 使用@Transactional 的方法(或者@Transactional(isolation = Isolation.SERIALIZABLE)串行化，但太耗性能)
     public void lockPoduct(){
