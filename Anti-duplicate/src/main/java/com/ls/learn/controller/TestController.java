@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @RepeatSubmit(limitType = RepeatSubmit.Type.TOKEN, lockTime = 10)
+    @RequestMapping()
     public String saveCountInfo(String accountNo){
         return "ok" + accountNo;
     }
