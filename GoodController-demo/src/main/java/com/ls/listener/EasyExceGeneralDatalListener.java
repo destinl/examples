@@ -1,7 +1,7 @@
 package com.ls.listener;
 
-import com.alibaba.excel.context.AnalysisContext;
-import com.alibaba.excel.event.AnalysisEventListener;
+//import com.alibaba.excel.context.AnalysisContext;
+//import com.alibaba.excel.event.AnalysisEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.Map;
  * @Author: ls
  * @Date: 2024/8/27 22:13
  */
-public class EasyExceGeneralDatalListener extends AnalysisEventListener<Map<Integer, String>> {
-
+public class EasyExceGeneralDatalListener  {
+//extends AnalysisEventListener<Map<Integer, String>>
 //    /**
 //     * 处理业务逻辑的 Service,也可以是 Mapper
 //     */
@@ -31,8 +31,8 @@ public class EasyExceGeneralDatalListener extends AnalysisEventListener<Map<Inte
 //        this.actResultLogService2 = actResultLogService2;
 //    }
 //
-    @Override
-    public void invoke(Map<Integer, String> data, AnalysisContext context) {
+//    @Override
+//    public void invoke(Map<Integer, String> data, AnalysisContext context) {
 //        // 数据 add 进入集合
 //        dataList.add(data);
 //        // size 是否为 100000 条:这里其实就是分批.当数据等于 10w 的时候执行一次插入
@@ -42,7 +42,7 @@ public class EasyExceGeneralDatalListener extends AnalysisEventListener<Map<Inte
 //            // 清理集合便于 GC 回收
 //            dataList.clear();
 //        }
-    }
+//    }
 //
 //    /**
 //     * 保存数据到 DB
@@ -56,9 +56,9 @@ public class EasyExceGeneralDatalListener extends AnalysisEventListener<Map<Inte
 //        dataList.clear();
 //    }
 //
-    @Override
-    public void doAfterAllAnalysed(AnalysisContext context) {
+//    @Override
+//    public void doAfterAllAnalysed(AnalysisContext context) {
 //        saveData();
 //        dataList.clear();
-    }
+//    }
 }
