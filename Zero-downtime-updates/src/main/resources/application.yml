@@ -2,6 +2,8 @@
 #  application:
 #    #随机名字，做ws集群使用
 #    name: ${myApplicationName}
+server:
+  port: 8848
 management:
   endpoints:
     web:
