@@ -1,13 +1,13 @@
-package com.alibaba.otter.canalsample;
+package com.ls.request_body_advice_demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CanalSampleApplication {
+public class RequestBodyAdviceDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CanalSampleApplication.class, args);
+		SpringApplication.run(RequestBodyAdviceDemoApplication.class, args);
 	}
 
 }
