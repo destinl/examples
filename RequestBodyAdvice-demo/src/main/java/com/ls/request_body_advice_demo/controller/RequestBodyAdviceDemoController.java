@@ -1,11 +1,9 @@
 package com.ls.request_body_advice_demo.controller;
 
 import com.ls.request_body_advice_demo.annotation.DecodeBody;
+//import com.ls.request_body_advice_demo.annotation.UserInfo;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description:
@@ -19,4 +17,12 @@ public class RequestBodyAdviceDemoController {
     public ResponseEntity<String> demo (@RequestBody @DecodeBody String payload) {
         return ResponseEntity.ok(payload);
     }
+
+
+    @GetMapping("/test/{user}")
+    public ResponseEntity<String> list(@PathVariable String user) {
+        System.out.println(user);
+        return ResponseEntity.ok(user);
+    }//@UserInfo
 }
+
