@@ -1,10 +1,10 @@
-package com.ls.mybatis_demo;
+package com.ls.webflux_demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MybatisDemoApplicationTests {
+class WebFluxDemoApplicationTests {
 
     @Test
     void contextLoads() {
