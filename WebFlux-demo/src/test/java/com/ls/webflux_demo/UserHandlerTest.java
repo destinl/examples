@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
  * @Date: 2024/9/2 21:53
  */
 @WebFluxTest
+//@SpringBootTest
 public class UserHandlerTest {
     @Autowired
     private WebTestClient webTestClient;

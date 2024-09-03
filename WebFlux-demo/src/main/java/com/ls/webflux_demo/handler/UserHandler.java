@@ -1,6 +1,7 @@
 package com.ls.webflux_demo.handler;
 
 import com.ls.webflux_demo.repository.UserRepository;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -27,8 +28,16 @@ public class UserHandler {
     }
 
     public Mono<ServerResponse> createUser(ServerRequest request) {
-        Mono<User> userMono = request.bodyToMono(User.class);
-        return userMono.flatMap(userRepository::save)
-                .flatMap(user -> ServerResponse.ok().bodyValue(user));
+//        Mono<User> userMono = request.bodyToMono(User.class);
+//        return userMono.flatMap(userRepository::save)
+//                .flatMap(user -> ServerResponse.ok().bodyValue(user));
+        User exampleUser = new User();
+        exampleUser.setId("exampleId");
+        exampleUser.setName("Example Name");
+        exampleUser.setAge(35);
+
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(exampleUser);
     }
 }
