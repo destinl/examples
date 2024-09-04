@@ -1,5 +1,6 @@
 package com.ls.interface_limit_demo.controller;
 
+import com.ls.interface_limit_demo.annotation.RequestLock;
 import com.ls.interface_limit_demo.domain.entity.AddReq;
 import com.ls.interface_limit_demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/add")
+    @RequestLock(prefix = "test")
 //    @RequiresPermissions(value = "add")
 //    @Log(methodDesc = "添加用户")
     public ResponseEntity<String> add(@RequestBody AddReq addReq) {

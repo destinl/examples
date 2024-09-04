@@ -6,6 +6,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -57,10 +59,11 @@ public class RedissonRequestLockAspect {
             try {
                 return joinPoint.proceed();
             } catch (Throwable throwable) {
-                throw new BizException(ResponseCodeEnum.BIZ_CHECK_FAIL, "系统异常");
+                throw new RuntimeException("系统异常");
+//                throw new BizException(ResponseCodeEnum.BIZ_CHECK_FAIL, "系统异常");
             }
         } catch (Exception e) {
-            throw new RuntimeException("系统异常");
+            throw new RuntimeException("您的操作太快了,请稍后重试");
 //            throw new BizException(ResponseCodeEnum.BIZ_CHECK_FAIL, "您的操作太快了,请稍后重试");
         } finally {
             //释放锁

@@ -1,0 +1,14 @@
+spring:
+  redis:
+    jedis:
+      pool:
+        min-idle: 0
+        max-idle: 500
+        max-active: 2000
+        max-wait: 10000
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+#      password: ""
+      timeout: 1000
