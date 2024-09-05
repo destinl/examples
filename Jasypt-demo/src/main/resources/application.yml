@@ -1,0 +1,16 @@
+jasypt:
+  encryptor:
+    ## 指定前缀、后缀，默认是prefix=ENC(、suffix=)
+#    property:
+#      prefix: 'PASS('
+#      suffix: ')'
+    password: rookiestackissocool
+#  当然将秘钥直接放在配置文件中也是不安全的，我们可以在项目启动的时候配置秘钥，命令如下：
+#  java -jar xxx.jar  -Djasypt.encryptor.password=rookiestackissocool
+spring:
+  datasource:
+    username: ENC(JZIrME3lDIIyOnYfSHA5O143ejGEQV2FiCANyEoa9sHkQ0nDs9qWgC4hvp5+qdmz)
+    password: ENC(zfI0gH7CtDTLMK1clrjcC0XSJYodytqKKPeTZVBv6TVFp5nNlWIHUlOtIo2q4xKq)
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource
+    url: ENC(upkpZN3NZZjadyo2VPtrnpd9EwrlZTChuzaTkfZ+cKkBuBXm1ZliLJ2T9TZaP5hEqWXeYxHdIpObkA3eYDE3ReRHGYn3gZ5IezOjs1Kd0QCV1nEprSA3I791qZUfiZ9Yr8uuW1s3o64am/yvq7+EDZsrzGqep5WGKBTanvRKEgOrhws1KT/Kb1fWxqccNG1rDjKOElRoQ2dwtlMHcnQtqtMC8Kihna3N1qPw1sfVl6N1pnuCepCDf6jey9ChgkvpyKmC4Ig+8IAaOeEJfoGQLA==)
