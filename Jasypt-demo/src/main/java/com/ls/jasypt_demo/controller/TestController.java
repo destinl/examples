@@ -1,6 +1,7 @@
 package com.ls.jasypt_demo.controller;
 
 import com.ls.jasypt_demo.domain.entity.Person;
+import com.ls.jasypt_demo.log.SensitiveDataLogger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
+    @GetMapping("/log")
+    public String log() {
+        SensitiveDataLogger.info("用户名: 张三, 身份证: 123456789012345678, 手机号: 13800138000, 地址: 北京市朝阳区幸福街123号");
+        return "Logged";
+    }
     @GetMapping("/test")
     public Person test(){
         Person user = new Person();
