@@ -13,8 +13,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @SpringBootApplication
-public class JasyptDemoApplication implements CommandLineRunner {
-    private static final Logger logger = LoggerFactory.getLogger(JasyptDemoApplication.class);
+@EnableAspectJAutoProxy
+public class JasyptDemoApplication {
+//    private static final Logger logger = LoggerFactory.getLogger(JasyptDemoApplication.class);
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(JasyptDemoApplication.class, args);
         DataSource dataSource = context.getBean(DataSource.class);
@@ -28,8 +29,8 @@ public class JasyptDemoApplication implements CommandLineRunner {
 
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        logger.info("用户名: 张三, 身份证: 123456789012345678, 手机号: 13800138000, 地址: 北京市朝阳区幸福街123号");
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        logger.info("用户名: 张三, 身份证: 123456789012345678, 手机号: 13800138000, 地址: 北京市朝阳区幸福街123号");
+//    }
 }
