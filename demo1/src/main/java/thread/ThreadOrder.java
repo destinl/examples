@@ -10,13 +10,54 @@ public class ThreadOrder {
 
     private static final Object lock = new Object();
     private static int current = 1; // 用于控制当前输出的线程
-    public static void main(String[] args) {
-        Thread threadA = new Thread(new CharPrinter("A", 1));
-        Thread threadB = new Thread(new CharPrinter("B", 2));
-        Thread threadC = new Thread(new CharPrinter("C", 3));
-        threadA.start();
-        threadB.start();
-        threadC.start();
+    public static void main(String[] args) throws InterruptedException {
+//        Thread threadA = new Thread(new CharPrinter("A", 1));
+//        Thread threadB = new Thread(new CharPrinter("B", 2));
+//        Thread threadC = new Thread(new CharPrinter("C", 3));
+//        threadA.start();
+//        threadB.start();
+//        threadC.start();
+        ThreadOrder threadOrder = new ThreadOrder();
+        threadOrder.threadStopDanger();
+    }
+
+    public void threadStopDanger() throws InterruptedException {
+        Object o1=new Object();
+        Object o2=new Object();
+        Thread t1=new Thread(()->{
+            synchronized (o1)
+            {
+                synchronized (o2)
+                {
+                    try {
+                        System.out.println("t1获取到锁");
+                        Thread.sleep(5000);
+                        System.out.println("t1结束");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        t1.start();
+        Thread.sleep(1000);
+        Thread t2=new Thread(()->{
+            synchronized (o1)
+            {
+                synchronized (o2)
+                {
+                    try {
+                        System.out.println("t2获取到锁");
+                        Thread.sleep(5000);
+                        System.out.println("t2结束");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        t2.start();
+        t1.stop();
     }
     static class CharPrinter implements Runnable {
         private final String charToPrint;
