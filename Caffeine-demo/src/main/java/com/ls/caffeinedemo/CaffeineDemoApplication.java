@@ -5,14 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatProtocolHandlerCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.function.RouterFunction;
-import org.springframework.web.servlet.function.ServerResponse;
-
-import static org.springframework.web.servlet.function.RouterFunctions.route;
+import org.springframework.web.reactive.config.EnableWebFlux;
+//import org.springframework.web.servlet.function.RouterFunction;
+//import org.springframework.web.servlet.function.ServerResponse;
+//
+//import static org.springframework.web.servlet.function.RouterFunctions.route;
 
 import java.util.concurrent.Executors;
 
-@EnableCaching
+@EnableWebFlux
 @SpringBootApplication
 public class CaffeineDemoApplication {
 
