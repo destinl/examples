@@ -5,25 +5,28 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatProtocolHandlerCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.reactive.config.EnableWebFlux;
-//import org.springframework.web.servlet.function.RouterFunction;
-//import org.springframework.web.servlet.function.ServerResponse;
-//
-//import static org.springframework.web.servlet.function.RouterFunctions.route;
+//import org.springframework.web.reactive.config.EnableWebFlux;
+//import org.springframework.web.reactive.function.server.RouterFunction;
+//import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.servlet.function.RouterFunction;
+import org.springframework.web.servlet.function.ServerResponse;
 
 import java.util.concurrent.Executors;
 
-@EnableWebFlux
+//import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+import static org.springframework.web.servlet.function.RouterFunctions.route;
+
+//@EnableWebFlux
 @SpringBootApplication
 public class CaffeineDemoApplication {
 
-//    @Bean
-//    public RouterFunction<ServerResponse> routeFuction(){
-//        return route()
-//                .GET("/getUserName", request -> ServerResponse.ok().body("zhouyu"))
-//                .GET("/getUserAge", request -> ServerResponse.ok().body("88"))
-//                .build();
-//    }
+    @Bean
+    public RouterFunction<ServerResponse> routeFuction(){
+        return route()
+                .GET("/getUserName", request -> ServerResponse.ok().body("zhouyu"))
+                .GET("/getUserAge", request -> ServerResponse.ok().body("88"))
+                .build();
+    }
 
     //Springboot（虚拟线程）
     //Executors.newVirtualThreadPerTaskExecutor()在 Java 19 中引入，Java 17 中没有这个方法。
