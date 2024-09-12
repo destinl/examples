@@ -23,10 +23,10 @@ public class OrderController {
      *
      * @return
      */
-    @RequestMapping("/getById")
-    public Order getById(@RequestParam("id") Long id) {
+    @RequestMapping("/selectById")
+    public Order selectById(@RequestParam("id") Long id) {
         //根据id查询订单
-        Order order = orderService.getById(id);
+        Order order = orderService.selectById(id);
         return order;
     }
 

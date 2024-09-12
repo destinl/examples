@@ -2,11 +2,13 @@ package com.ls.state_machine_demo.config;
 
 import com.ls.state_machine_demo.enums.OrderStatus;
 import com.ls.state_machine_demo.enums.OrderStatusChangeEvent;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
+import org.springframework.statemachine.processor.StateMachineAnnotationPostProcessor;
 
 import java.util.EnumSet;
 
@@ -46,5 +48,10 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
                 .and()
                 //收货事件:待收货-》已完成
                 .withExternal().source(OrderStatus.WAIT_RECEIVE).target(OrderStatus.FINISH).event(OrderStatusChangeEvent.RECEIVED);
+    }
+
+    @Bean
+    public static StateMachineAnnotationPostProcessor stateMachineAnnotationPostProcessor() {
+        return new StateMachineAnnotationPostProcessor();
     }
 }

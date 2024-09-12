@@ -2,6 +2,8 @@ package com.ls.state_machine_demo.domain.entity;
 //import javax.validation.constraints.NotBlank;
 //import javax.validation.constraints.Size;
 //import javax.validation.constraints.NotNull;
+//import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +15,7 @@ import java.util.Date;
  * 订单表
  * @TableName tb_order
  */
+//@TableName("tb_order")
 public class Order implements Serializable {
     /**
      * 主键ID
