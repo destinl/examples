@@ -1,0 +1,14 @@
+spring:
+  data:
+    redis:
+      timeout: 5000
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
+          #看看不写host会不会报错
+#      host: localhost
+#      port: 6379
+#      database

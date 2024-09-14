@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>enjoy login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div text-align="center">
+    <h1>请登陆</h1>
+    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+        <p>用户名: <input type="text" th:field="*{username}" /></p>
+        <p>密  码: <input type="text" th:field="*{password}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        <input type="text" th:field="*{backurl}" hidden="hidden" />
+    </form>
+</div>
+</body>
+</html>
