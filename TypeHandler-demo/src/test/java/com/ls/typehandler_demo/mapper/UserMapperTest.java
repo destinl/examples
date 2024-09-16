@@ -1,6 +1,7 @@
 package com.ls.typehandler_demo.mapper;
 
 import com.ls.typehandler_demo.domain.entity.Address;
+import com.ls.typehandler_demo.domain.entity.Tags;
 import com.ls.typehandler_demo.domain.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @Description:
@@ -18,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * @Date: 2024/9/16 12:28
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 class UserMapperTest {
 
     @Autowired
@@ -52,5 +55,27 @@ class UserMapperTest {
         assertNotNull(foundUser);
         assertEquals(address.getCity(), foundUser.getAddress().getCity());
         assertEquals(address.getStreet(), foundUser.getAddress().getStreet());
+    }
+
+    @Test
+    void testTagsInsertAndFindById() {
+        Tags user = new Tags();
+        user.setTags(Arrays.asList("apple", "banana", "orange"));
+
+        // 插入用户
+        int insertedId = userMapper.insertTags(user);
+
+        // 断言插入成功并且返回了正确的自增 ID
+        assertNotNull(insertedId);
+
+        // 根据插入的 ID 查询用户
+        Tags tagsEntity = userMapper.findTagsById(insertedId);
+
+        // 断言返回值类型是 List<String>
+        assertNotNull(tagsEntity);
+        assertTrue(tagsEntity.getTags() instanceof List);
+
+        // 断言标签列表内容正确
+        assertEquals(Arrays.asList("apple", "banana", "orange"), tagsEntity.getTags());
     }
 }
