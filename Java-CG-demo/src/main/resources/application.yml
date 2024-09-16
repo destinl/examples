@@ -11,14 +11,14 @@ spring:
     dynamic:
       datasource:
         master:
-          jdbc-url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          jdbc-url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: root
-          password: Mysql112223
+          password:
           driver-class-name: com.mysql.cj.jdbc.Driver
         replica:
           jdbc-url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: root
-          password: Mysql112223
+          password:
           driver-class-name: com.mysql.cj.jdbc.Driver
   shardingsphere:
     datasource:
@@ -28,7 +28,7 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
-        password: Mysql112223
+        password:
     rules:
       encrypt:
         tables:

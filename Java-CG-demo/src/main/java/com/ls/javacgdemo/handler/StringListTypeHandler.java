@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-@MappedJdbcTypes({JdbcType.VARCHAR})
-@MappedTypes({String.class})
+//@MappedJdbcTypes({JdbcType.VARCHAR})
+//@MappedTypes({String.class})
 public class StringListTypeHandler extends BaseTypeHandler<List<String>> {
 
     @Override

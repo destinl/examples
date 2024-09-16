@@ -9,10 +9,13 @@ import org.apache.ibatis.type.JdbcType;
 import java.util.List;
 import java.util.Optional;
 
-@Mapper
+//@Mapper
 public interface UserMapper {
 
-    @Select("INSERT INTO t_user (username, password_plain) VALUES (#{user.username}, #{user.passwordPlain})")
+    @Select("INSERT INTO t_user (username, password_plain) VALUES (#{tags, typeHandler= com.ls.javacgdemo" +
+            ".handler.StringListTypeHandler}," +
+            " #{passwordPlain})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     void save(User user);
 
 //    @DS("replica")
@@ -22,8 +25,9 @@ public interface UserMapper {
 
     @Select("SELECT username FROM t_user WHERE id = #{id}")
     @Results({
-            @Result(column = "username", property = "username", typeHandler = StringListTypeHandler.class, jdbcType =
-                    JdbcType.VARCHAR)
+            @Result(column = "username", property = "tags", typeHandler = StringListTypeHandler.class)
     })
+    //, jdbcType = JdbcType.VARCHAR
     List<String> getTagsById(@Param("id") Integer id);
+
 }

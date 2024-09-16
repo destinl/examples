@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--如果不需要自定义全局配置 Mybatis 数据，也可以省掉创建 Mybatis 全局配置文件-->
+
+    <settings>
+        <!-- 指定MyBatis所用日志的具体实现，STDOUT_LOGGING:表示打印到控制台-->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+<!--    <typeAliases>-->
+<!--        &lt;!&ndash;配置类型别名可为Java类型设置一个缩写名字，以便于在xml中通过简写来代替全限定类名&ndash;&gt;-->
+<!--        <typeAlias alias="Integer" type="java.lang.Integer" />-->
+<!--        <typeAlias alias="Long" type="java.lang.Long" />-->
+<!--        <typeAlias alias="HashMap" type="java.util.HashMap" />-->
+<!--        <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />-->
+<!--        <typeAlias alias="ArrayList" type="java.util.ArrayList" />-->
+<!--        <typeAlias alias="LinkedList" type="java.util.LinkedList" />-->
+<!--    </typeAliases>-->
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="com.ls.javacgdemo.handler.StringListTypeHandler" javaType="java.util.List"-->
+<!--                     jdbcType="VARCHAR"/>-->
+<!--    </typeHandlers>-->
+</configuration>
