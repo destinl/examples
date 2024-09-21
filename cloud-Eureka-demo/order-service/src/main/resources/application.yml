@@ -1,0 +1,17 @@
+server:
+  port: 9202
+
+spring:
+  application:
+    name: orderservice
+
+logging:
+  level:
+    com.ls: debug
+  pattern:
+    dateformat: MM-dd-HH:mm:ss:SSS
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9200/eureka
