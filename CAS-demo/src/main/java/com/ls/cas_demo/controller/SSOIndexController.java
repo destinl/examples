@@ -1,6 +1,5 @@
 package com.ls.cas_demo.controller;
 
-import com.ls.cas_demo.filter.LoginFilter;
 import com.ls.cas_demo.domain.entity.User;
 import com.ls.cas_demo.filter.SSOFilter;
 import jakarta.servlet.ServletException;
@@ -23,22 +22,21 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Description:
  * @Author: ls
- * @Date: 2024/9/14 21:49
+ * @Date: 2024/9/23 22:39
  */
-@RequestMapping("/NO-USE")
 @Controller
-public class IndexController {
+public class SSOIndexController {
     @Autowired
     private RedisTemplate redisTemplate;
     @GetMapping("/toLogin")
     public String toLogin(Model model, HttpServletRequest request) {
-        Object userInfo = request.getSession().getAttribute(SSOFilter.USER_INFO);
-        //不为空，则是已登陆状态
-        if (null != userInfo){
-            String ticket = UUID.randomUUID().toString();
-            redisTemplate.opsForValue().set(ticket,userInfo,2, TimeUnit.SECONDS);
-            return "redirect:"+request.getParameter("url")+"?ticket="+ticket;
-        }
+//        Object userInfo = request.getSession().getAttribute(SSOFilter.USER_INFO);
+//        //不为空，则是已登陆状态
+//        if (null != userInfo){
+//            String ticket = UUID.randomUUID().toString();
+//            redisTemplate.opsForValue().set(ticket,userInfo,2, TimeUnit.SECONDS);
+//            return "redirect:"+request.getParameter("url")+"?ticket="+ticket;
+//        }
         User user = new User();
         user.setUsername("laowang");
         user.setPassword("laowang");
@@ -48,9 +46,12 @@ public class IndexController {
     }
     @PostMapping("/login")
     public void login(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("backurl:"+user.getBackurl());
-        request.getSession().setAttribute(SSOFilter.USER_INFO,user);
+//        System.out.println("backurl:"+user.getBackurl());
+//        request.getSession().setAttribute(SSOFilter.USER_INFO,user);
         //登陆成功，创建用户信息票据
+        if(request.getSession().getAttribute(SSOFilter.USER_INFO)!=null){
+            request.getSession().removeAttribute(SSOFilter.USER_INFO);
+        }
         String ticket = UUID.randomUUID().toString();
         redisTemplate.opsForValue().set(ticket,user,20, TimeUnit.SECONDS);
         //重定向，回原url  ---a.com

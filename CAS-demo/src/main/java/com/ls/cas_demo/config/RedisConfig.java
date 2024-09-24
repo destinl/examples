@@ -1,5 +1,6 @@
 package com.ls.cas_demo.config;
 
+import com.ls.cas_demo.domain.entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -25,13 +26,15 @@ public class RedisConfig {
 //    }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+    public RedisTemplate<String, User> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, User> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
+
         // 使用 Jackson2JsonRedisSerializer 序列化器处理对象
-        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        Jackson2JsonRedisSerializer<User> serializer = new Jackson2JsonRedisSerializer<>(User.class);
         template.setValueSerializer(serializer);
         template.setKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(serializer);
         return template;
     }
 }
